@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile • The Atelier</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/profile.css" />
+</head>
+<body>
+  <header class="app-nav">
+    <a class="logo" href="feed.html" style="font-size:1.6rem;">The Atelier</a>
+    <ul>
+      <li>
+        <a href="feed.html" aria-label="Home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 11l9-8 9 8" /><path d="M5 10v10h5v-6h4v6h5V10" />
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a href="#" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="7" /><path d="M21 21l-4.3-4.3" />
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a href="profile.html" aria-current="page" aria-label="Profile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4" /><path d="M4 21c1.6-4 5-6 8-6s6.4 2 8 6" />
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </header>
+
+  <main class="app-main">
+    <div class="profile-header">
+      <div class="avatar" id="avatar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="8" r="4" /><path d="M4 21c1.6-4 5-6 8-6s6.4 2 8 6" />
+        </svg>
+      </div>
+      <div class="profile-info">
+        <p class="username" id="username">username</p>
+        <ul class="stats">
+          <li><strong id="post-count">0</strong><span>posts</span></li>
+          <li><strong id="follower-count">0</strong><span>followers</span></li>
+          <li><strong id="following-count">0</strong><span>following</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bio">
+      <p class="display-name" id="display-name">Display Name</p>
+      <p class="placeholder" id="bio-text">No bio yet.</p>
+    </div>
+
+    <div class="post-grid" id="post-grid">
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+    </div>
+  </main>
+
+  <script src="js/profile.js"></script>
+</body>
+</html>
