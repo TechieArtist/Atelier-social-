@@ -1,0 +1,4 @@
+/* login.html — page-specific styles. Shell/layout lives in style.css */
+
+.auth-card .field:first-of-type input { border-bottom: none; border-radius: 4px 4px 0 0; }
+.auth-card .field:nth-of-type(2) input { border-radius: 0 0 4px 4px; }

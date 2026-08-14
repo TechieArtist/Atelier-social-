@@ -1,0 +1,42 @@
+/* feed.html — page-specific styles. Shell/nav lives in style.css */
+
+.empty-state {
+  border: 1px solid var(--border);
+  background: var(--white);
+  border-radius: 3px;
+  padding: 64px 24px;
+  text-align: center;
+}
+
+.empty-state .ring {
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 18px;
+  border: 2px solid var(--text);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-state .ring svg { width: 30px; height: 30px; }
+
+.empty-state h2 {
+  font-size: 22px;
+  font-weight: 400;
+  margin: 0 0 6px;
+}
+
+.empty-state p {
+  color: var(--text-dim);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* scaffold for a future post card — not populated yet */
+.post-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  margin-bottom: 24px;
+}

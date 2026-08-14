@@ -1,0 +1,10 @@
+/* signup.html — page-specific styles. Shell/layout lives in style.css */
+
+.auth-card .terms {
+  font-size: 11px;
+  color: var(--text-dim);
+  line-height: 1.4;
+  margin: 12px 0 4px;
+}
+
+.auth-card .terms a { color: #385185; font-weight: 600; }
