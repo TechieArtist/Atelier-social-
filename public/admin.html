@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin • The Atelier</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/feed.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+  <header class="app-nav">
+    <a class="logo" href="feed.html" style="font-size:1.6rem;">The Atelier</a>
+    <ul>
+      <li>
+        <a href="feed.html" aria-label="Home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 11l9-8 9 8" /><path d="M5 10v10h5v-6h4v6h5V10" />
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a href="#" data-logout aria-label="Log out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><path d="M16 17l5-5-5-5" /><path d="M21 12H9" />
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </header>
+
+  <main class="app-main">
+    <section class="admin-section">
+      <h2>Feed ratio</h2>
+      <p class="admin-hint">Percent of the feed that is real work. The rest fills with persona posts.</p>
+      <div class="ratio-row">
+        <input type="range" id="ratio-slider" min="0" max="100" step="5" />
+        <span id="ratio-value">—</span>
+      </div>
+      <button id="ratio-save" class="btn" style="width:auto; padding:8px 24px;">Save ratio</button>
+      <p class="status-line" id="ratio-status"></p>
+    </section>
+
+    <section class="admin-section">
+      <h2>Personas</h2>
+      <p class="admin-hint">Real accounts — searchable and followable, just like yours. Tap one to edit or post as them.</p>
+      <div id="persona-list"></div>
+      <button type="button" id="new-persona-btn" class="btn btn-outline" style="width:auto; padding:8px 20px; margin-top:10px;">+ New persona</button>
+    </section>
+  </main>
+
+  <div class="modal-overlay hidden" id="persona-modal">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <h2 id="persona-modal-title">New persona</h2>
+        <button type="button" class="modal-close" id="close-persona-modal" aria-label="Close">&times;</button>
+      </div>
+
+      <label class="avatar" id="persona-avatar" for="persona-avatar-input" style="width:64px; height:64px; margin-bottom:12px;">
+        <img id="persona-avatar-img" style="display:none;" alt="" />
+        <svg id="persona-avatar-placeholder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="8" r="4" /><path d="M4 21c1.6-4 5-6 8-6s6.4 2 8 6" />
+        </svg>
+      </label>
+      <input type="file" id="persona-avatar-input" accept="image/*" class="visually-hidden" />
+      <p class="status-line" id="persona-avatar-status"></p>
+
+      <form id="persona-form" novalidate>
+        <input type="hidden" id="persona-id" />
+        <div class="field">
+          <label for="persona-username">Username</label>
+          <input type="text" id="persona-username" required />
+        </div>
+        <div class="field">
+          <label for="persona-tag">Internal label</label>
+          <input type="text" id="persona-tag" placeholder="e.g. travel, influencer, ad, meme" />
+        </div>
+        <div class="field">
+          <label for="persona-bio">Bio</label>
+          <textarea id="persona-bio" maxlength="500" rows="3"></textarea>
+        </div>
+        <p class="field-note" id="persona-error" role="alert"></p>
+        <button type="submit" class="btn" style="width:auto; padding:8px 24px;">Save persona</button>
+        <p class="status-line" id="persona-status"></p>
+      </form>
+
+      <hr style="margin:18px 0; border:none; border-top:1px solid var(--border);" />
+
+      <h2 style="font-size:16px; margin:0 0 10px;">Post as this persona</h2>
+      <form id="persona-post-form" enctype="multipart/form-data" novalidate>
+        <label class="compose-file-label" for="persona-post-image">
+          <span id="persona-post-file-name">Choose an image or video</span>
+        </label>
+        <input type="file" id="persona-post-image" accept="image/*,video/*" required />
+        <textarea id="persona-post-caption" placeholder="Caption…" maxlength="2200" rows="2"></textarea>
+        <p class="field-note" id="persona-post-error" role="alert"></p>
+        <button type="submit" class="btn" style="width:auto; padding:8px 24px;">Post</button>
+        <p class="status-line" id="persona-post-status"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/session.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

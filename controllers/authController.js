@@ -59,9 +59,9 @@ async function login(req, res) {
     }
 
     const user = await User.findByEmailWithPassword(email);
-    if (!user) {
+    if (!user || !user.password) {
       // Same message as a wrong password — don't reveal whether the
-      // email exists.
+      // email exists.Personas have no password and can never log in.
       return res.status(401).json({ error: 'Invalid email or password.' });
     }
 

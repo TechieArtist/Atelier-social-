@@ -8,17 +8,25 @@ const pgSession = require('connect-pg-simple')(session);
 
 const pool = require('./database/db');
 const authRoutes = require('./routes/auth');
+const aiPostRoutes = require('./routes/aiPosts');
+const profileRoutes = require('./routes/profile');
+const likeRoutes = require('./routes/likes');
+const commentRoutes = require('./routes/comments');
+const followRoutes = require('./routes/follows');
+const userRoutes = require('./routes/users');
+const feedSettingsRoutes = require('./routes/feedSettings');
+const postRoutes = require('./routes/posts');
 const { requireAuth } = require('./middleware/auth');
+const adminPersonaRoutes = require('./routes/adminPersonas');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const isProd = process.env.NODE_ENV === 'production';
 
-// If you deploy behind a proxy (Render, Railway, Heroku, etc.), this is
-// required for secure cookies to work correctly.
 if (isProd) app.set('trust proxy', 1);
 
 app.use(express.json());
+
 
 app.use(
   session({
@@ -28,26 +36,31 @@ app.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: isProd,       // requires HTTPS in production
+      secure: isProd,
       sameSite: 'lax',
-      maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+      maxAge: 1000 * 60 * 60 * 24 * 7,
     },
   })
 );
 
-// ---------- API routes ----------
 app.use('/api/auth', authRoutes);
+app.use('/api/posts', postRoutes);
+app.use('/api/ai-posts', aiPostRoutes);
+app.use('/api/feed-settings', feedSettingsRoutes);
+app.use('/api/profile', profileRoutes);
+app.use('/api/likes', likeRoutes);
+app.use('/api/comments', commentRoutes);
+app.use('/api/follows', followRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/admin/personas', adminPersonaRoutes);
 
-// Example of a protected, non-auth route — this is the pattern every
-// future feature route (posts, follows, comments…) will follow.
+
+
 app.get('/api/protected-example', requireAuth, (req, res) => {
   res.json({ message: `You are logged in as user ${req.session.userId}.` });
 });
-
-// ---------- static frontend ----------
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ---------- start ----------
 app.listen(PORT, () => {
   console.log(`The Atelier server running on http://localhost:${PORT}`);
 });

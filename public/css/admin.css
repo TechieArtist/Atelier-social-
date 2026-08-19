@@ -1,0 +1,48 @@
+/* admin.html — page-specific styles */
+
+.admin-section {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.admin-section h2 {
+  font-size: 16px;
+  margin: 0 0 4px;
+}
+
+.admin-hint {
+  color: var(--text-dim);
+  font-size: 13px;
+  margin: 0 0 16px;
+}
+
+.ratio-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.ratio-row input[type="range"] { flex: 1; }
+
+.ratio-row span {
+  font-size: 13px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+#ai-form textarea {
+  width: 100%;
+  background: #fafafa;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 13px;
+  padding: 8px;
+  resize: vertical;
+  margin-bottom: 10px;
+}

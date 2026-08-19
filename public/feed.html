@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Feed • The Atelier</title>
+  <title>Feed • Picso</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/feed.css" />
 </head>
 <body>
   <header class="app-nav">
-    <a class="logo" href="feed.html" style="font-size:1.6rem;">The Atelier</a>
+    <a class="logo" href="feed.html" style="font-size:1.6rem;">Picso</a>
     <ul>
       <li>
         <a href="feed.html" aria-current="page" aria-label="Home">
@@ -19,11 +19,18 @@
         </a>
       </li>
       <li>
-        <a href="#" aria-label="Search">
+        <a href="search.html" aria-label="Search">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="7" /><path d="M21 21l-4.3-4.3" />
           </svg>
         </a>
+      </li>
+      <li>
+        <button type="button" class="icon-btn" id="open-compose" aria-label="Create post" style="opacity:1;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="4" /><path d="M12 8v8M8 12h8" />
+          </svg>
+        </button>
       </li>
       <li>
         <a href="profile.html" aria-label="Profile">
@@ -32,23 +39,70 @@
           </svg>
         </a>
       </li>
+      <li>
+        <a href="#" data-logout aria-label="Log out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><path d="M16 17l5-5-5-5" /><path d="M21 12H9" />
+          </svg>
+        </a>
+      </li>
     </ul>
   </header>
 
   <main class="app-main">
-    <div class="empty-state">
-      <div class="ring">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="3" y="3" width="18" height="18" rx="2" />
-          <circle cx="8.5" cy="8.5" r="1.5" />
-          <path d="M21 15l-5-5L5 21" />
-        </svg>
+    <div id="feed-container">
+      <div class="empty-state" id="empty-state">
+        <div class="ring">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <circle cx="8.5" cy="8.5" r="1.5" />
+            <path d="M21 15l-5-5L5 21" />
+          </svg>
+        </div>
+        <h2>No posts yet</h2>
+        <p>When people you follow share work, it will show up here.</p>
       </div>
-      <h2>No posts yet</h2>
-      <p>When people you follow share work, it will show up here.</p>
     </div>
   </main>
 
+  <div class="modal-overlay hidden" id="compose-modal">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <h2>New post</h2>
+        <button type="button" class="modal-close" id="close-compose" aria-label="Close">&times;</button>
+      </div>
+
+      <form id="compose-form" enctype="multipart/form-data" novalidate>
+        <label class="compose-file-label" for="compose-image">
+          <span id="compose-file-name">Choose an image</span>
+        </label>
+        <input type="file" id="compose-image" name="image" accept="image/*,video/*" required />
+        <textarea id="compose-caption" name="caption" placeholder="Write a caption…" maxlength="2200" rows="2"></textarea>
+        <p class="field-note" id="compose-error" role="alert"></p>
+        <button type="submit" class="btn">Share</button>
+        <p class="status-line" id="compose-status"></p>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay hidden" id="comments-modal">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <h2>Comments</h2>
+        <button type="button" class="modal-close" id="close-comments" aria-label="Close">&times;</button>
+      </div>
+
+      <div id="comments-list"></div>
+
+      <form id="comment-form" class="comment-form" novalidate>
+        <input type="text" id="comment-input" placeholder="Add a comment…" maxlength="500" autocomplete="off" />
+        <button type="submit" class="btn" style="width:auto; padding:8px 20px;">Post</button>
+      </form>
+      <p class="status-line" id="comment-status"></p>
+    </div>
+  </div>
+
+  <script src="js/session.js"></script>
   <script src="js/feed.js"></script>
 </body>
 </html>
